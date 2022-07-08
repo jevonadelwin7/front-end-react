@@ -21,7 +21,6 @@ export default function EmployeeList() {
             })]
         )
     }
-    
     const PenguranganGaji = (id) => {
         setEmployee(
             [...employee.map(emp=>{
@@ -35,12 +34,11 @@ export default function EmployeeList() {
             })]
         )
     }
-    
-    const CutSalary = (id) => {
+    const RaiseGaji = (id) => {
         setEmployee(
             [...employee.map(emp=>{
                 if (id === emp.empId) {
-                    emp.salary = emp.salary - ((emp.salary * 5) /100) 
+                    emp.salary = emp.salary + (emp.salary*0.1)
                     return emp
                 }
                 else{
@@ -49,11 +47,11 @@ export default function EmployeeList() {
             })]
         )
     }
-    const RaiseSalary = (id) => {
+    const CutGaji = (id) => {
         setEmployee(
             [...employee.map(emp=>{
                 if (id === emp.empId) {
-                    emp.salary = emp.salary + ((emp.salary * 5) /100) 
+                    emp.salary = emp.salary - (emp.salary*0.05)
                     return emp
                 }
                 else{
@@ -75,8 +73,8 @@ export default function EmployeeList() {
                         <p>Salary : {emp.salary}</p>
                         <button onClick={()=>PenambahanGaji(emp.empId)}>Penambahan Gaji</button>
                         <button onClick={()=>PenguranganGaji(emp.empId)}>Pengurangan Gaji</button>
-                        <button onClick={()=>RaiseSalary(emp.empId)}>Raise salary 10%</button>
-                        <button onClick={()=>CutSalary(emp.empId)}>Cut salary 5%</button>
+                        <button onClick={()=>RaiseGaji(emp.empId)}>Raise salary 10%</button>
+                        <button onClick={()=>CutGaji(emp.empId)}>Cut salary 5%</button>
                     </li>
                 ))
             }

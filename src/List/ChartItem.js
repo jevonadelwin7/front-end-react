@@ -10,37 +10,34 @@ export default function ChartItem() {
     const [total,setTotal] = useState(0)
     const [totalQty, setTotalQty] = useState(0)
 
-    
-
-    
     useEffect(()=>{
         const TotalHarga = cart.reduce((sum,el)=>sum + (el.salary * el.qty),0)
         setTotal(TotalHarga)
         const TotalQuantity = cart.reduce((sum,el)=> sum + el.qty,0)
         setTotalQty(TotalQuantity)
     })
-    const Tambah = (id) => {
+    const Pengurangan = (id) => {
         setCart(
-            [...cart.map(carts=>{
-                if (id === carts.prodId) {
-                    carts.qty = carts.qty + 1
-                    return carts
+            [...cart.map(emp=>{
+                if (id === emp.prodId) {
+                    emp.qty = emp.qty - 1
+                    return emp
                 }
                 else{
-                    return carts
+                    return emp
                 }
             })]
         )
     }
-    const Kurang = (id) => {
+    const Penjumlahan = (id) => {
         setCart(
-            [...cart.map(carts=>{
-                if (id === carts.prodId) {
-                    carts.qty = carts.qty - 1
-                    return carts
+            [...cart.map(emp=>{
+                if (id === emp.prodId) {
+                    emp.qty = emp.qty + 1
+                    return emp
                 }
                 else{
-                    return carts
+                    return emp
                 }
             })]
         )
@@ -65,8 +62,8 @@ export default function ChartItem() {
                             <td>{carts.salary}</td>
                             <td>{carts.qty * carts.salary}</td>
                             <td>
-                                <button onClick={()=>Tambah(carts.prodId)}>+</button>
-                                <button onClick={()=>Kurang(carts.prodId)}>-</button>
+                                <button onClick={()=>Penjumlahan(carts.prodId)}>+</button>
+                                <button onClick={()=>Pengurangan(carts.prodId)}>-</button>
                             </td>
                         </tr>
                     ))
